@@ -1,4 +1,4 @@
-Welcome HTML Validator
+Welcome to HTML Validator
 ======================
 
 This is the CLI for validating rendered HTML in your website, page by page. This package could be used unless your website is configured `sitemap`
@@ -13,6 +13,8 @@ Installation
 	cd ~
 	sudo npm i -g valimate
 ```
+
+For local running, checkout this [original source](https://github.com/jamesseanwright/valimate)
 
 * Clone repository to your desire path.
 
