@@ -1,0 +1,9 @@
+#!/usr/bin/env php
+
+<?php
+	require_once "Validator/HtmlValidator.php";
+
+	parse_str(implode('&', array_slice($argv, 1)), $args);
+	$htmlValidator = new HtmlValidator($args);
+	$htmlValidator->execute();
+?>
