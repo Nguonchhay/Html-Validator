@@ -1,3 +1,5 @@
 valimate.json
 /Report/*
 !/Report/.gitkeep
+
+.idea

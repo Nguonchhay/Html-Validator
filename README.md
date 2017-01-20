@@ -7,11 +7,24 @@ with url `your-website-base-url/sitemap.xml`.
 Installation
 ------------
 
+* Verify your existing Node.js and make sure you run the latest stable version.
+
+```
+	sudo npm cache clean -f
+	sudo npm install -g n
+	sudo n stable
+	node -v
+
+```
+
+** Note: if your computer does not have NodeJS, follow this [how to install NodeJS](https://nodejs.org/en/download/)
+
 * First you need to install `valimate` command. We need to install this command only one time.
 
 ```
 	cd ~
 	sudo npm i -g valimate
+
 ```
 
 For local running, checkout this [original source](https://github.com/jamesseanwright/valimate)
