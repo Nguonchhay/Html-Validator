@@ -1,8 +1,9 @@
 Welcome to HTML Validator
 ======================
 
-This is the CLI for validating rendered HTML in your website, page by page. This package could be used unless your website is configured `sitemap`
-with url `your-website-base-url/sitemap.xml`.
+This is the CLI for validating rendered HTML in your website, page by page. You can validate by providing urls that you want or 
+validate the whole valid url within your website. If you want to validate the whole website, your website has to configured `sitemap`
+with the url `your-website-base-url/sitemap.xml`.
 
 Installation
 ------------
@@ -40,19 +41,23 @@ How to run HTML validator
 
 	cd /path/to/your/HtmlValidator
 
-* Run validator command
+* Run validator command for validating the whole website
 
 	./html-validator  --baseUrl=your-website-base-url
 
+* Run validator command for validating some urls. The urls can be from different websites.
+
+	./html-validator  --urls="url_1,url_2,...,url_n"
+
 * By default the report will be placed at `/path/to/your/HtmlValidator/Report`. If you want to override report path, pass the argument `--output` or shortcut `-o`.
 
-	./html-validator --baseUrl=your-website-base-url -o=build/logs
+	./html-validator --baseUrl=your-website-base-url -o=path/that/you/want/to/store/report
 
 * By default the report filename is `html-validator.html`. If you want to override report filename, pass the argument `--filename`.
 
-	./html-validator --baseUrl=your-website-base-url -o=build/logs --filename=html-test.html
+	./html-validator --baseUrl=your-website-base-url --filename=html-test.html
 
-* Note: in case there is unexpected error related while your configuration is valid. Try to remove the node cache
+** Note: in case there is unexpected error related while your configuration is valid. Try to remove the node cache
 
 	rm  -rf ~/.npm
 	npm cache clear

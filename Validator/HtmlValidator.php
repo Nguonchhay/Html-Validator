@@ -32,6 +32,11 @@ class HtmlValidator {
 	private $filename;
 
 	/**
+	 * @var array
+	 */
+	private $predefinedURLs;
+
+	/**
 	 * @var String
 	 */
 	private $report;
@@ -69,6 +74,14 @@ class HtmlValidator {
 		if (isset($args['-f'])) {
 			$this->forceHard = ($args['-f'] == 'true') ? true : false;
 		}
+
+		$this->predefinedURLs = [];
+		if (isset($args['--urls'])) {
+			$arrURLs = explode(',', $args['--urls']);
+			foreach ($arrURLs as $url) {
+				$this->predefinedURLs[] = rtrim(trim($url), "/");
+			}
+		}
 	}
 
 	/**
@@ -97,6 +110,10 @@ class HtmlValidator {
 		return $urls;
 	}
 
+	private function getPredefineURLs() {
+		return $this->predefinedURLs;
+	}
+
 	/**
 	 * @param $data
 	 * @param $removeStrings
@@ -113,7 +130,12 @@ class HtmlValidator {
 	private function generateConfiguration() {
 		$valimate = $this->getTemplate();
 		$valimate['failHard'] = $this->forceHard;
-		$urls = $this->getWebsiteUrls();
+
+		$urls = $this->getPredefineURLs();
+		if (count($urls) == 0) {
+			$urls = $this->getWebsiteUrls();
+		}
+
 		if (is_array($urls) && count($urls)) {
 			$valimate['urls'] = $urls;
 		} else {
