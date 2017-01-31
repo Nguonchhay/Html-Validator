@@ -49,7 +49,7 @@ class HtmlValidator {
 	public function __construct($args) {
 		$this->args = $args;
 
-		$this->baseUrl = '/';
+		$this->baseUrl = 'urls:';
 		if (isset($args['--baseUrl'])) {
 			$this->baseUrl = $args['--baseUrl'];
 		}
@@ -131,15 +131,9 @@ class HtmlValidator {
 		$valimate = $this->getTemplate();
 		$valimate['failHard'] = $this->forceHard;
 
-		$urls = $this->getPredefineURLs();
-		if (count($urls) == 0) {
-			$urls = $this->getWebsiteUrls();
-		}
-
-		if (is_array($urls) && count($urls)) {
-			$valimate['urls'] = $urls;
-		} else {
-			$valimate['urls'] = [$baseUrl];
+		$valimate['urls'] = $this->getPredefineURLs();
+		if (count($valimate['urls']) == 0) {
+			$valimate['urls'] = $this->getWebsiteUrls();
 		}
 		$this->createConfigurationFile($valimate);
 	}
@@ -156,7 +150,7 @@ class HtmlValidator {
 		foreach ($output as $string) {
 			$string = trim($string);
 			$string = $this->removeUnusedString($string, $this->specialCharacters);
-			if ($string == '' | $string == "\n" || strpos($string, '▒') !== false || strpos($string, 'Validating URLs from valimate.json') !== false) {
+			if ($string == '' | $string == "\n" || strpos($string, '▒') !== false || strpos($string, 'Validating URLs from valimate.json') !== false || strpos($string, 'Congratulations!') !== false) {
 				continue;
 			}
 
