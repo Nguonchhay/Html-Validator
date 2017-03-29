@@ -41,6 +41,14 @@ How to run HTML validator
 
 	cd /path/to/your/HtmlValidator
 
+* List all available arguments
+
+	./html-validator
+
+	OR
+
+	./html-validator --help
+
 * Run validator command for validating the whole website
 
 	./html-validator  --baseUrl=your-website-base-url

@@ -4,6 +4,20 @@
 	require_once "Validator/HtmlValidator.php";
 
 	parse_str(implode('&', array_slice($argv, 1)), $args);
-	$htmlValidator = new HtmlValidator($args);
-	$htmlValidator->execute();
+
+	/**
+	 * Provide --help option
+	 */
+	if (count($args) == 0 || array_key_exists('--help', $args)) {
+		echo "\033[32m*** HTML Validator Arguments ***\n";
+		echo "--------------------------------\033[0m\n\n";
+		echo "  \033[32m --baseUrl \033[0m     \t\t Validate a whole website base on `/sitemap.xml` \n";
+		echo "  \033[32m --urls \033[0m        \t\t Validate provided urls \033[32m[--urls=\"url_1,url_2,...,url_n\"]\033[0m \n";
+		echo "  \033[32m -o, --output \033[0m  \t\t Override the output result \n";
+		echo "  \033[32m --filename \033[0m    \t\t Override the result filename \n";
+	} else {
+		$htmlValidator = new HtmlValidator($args);
+		$htmlValidator->execute();
+	}
+
 ?>
